@@ -25,5 +25,8 @@ let webSocket = {
     },
     sendAnswer: function (answer) {
         this._sendMessage(answer);
+    },
+    sendNickname: function (nickname) {
+        this._sendMessage(nickname)
     }
 };
