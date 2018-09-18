@@ -1,10 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8" />
+    <meta name="author" content="Codecool" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Kakook</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="../static/css/main.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous" defer></script>
+    <script src="/static/js/main.js" defer></script>
+    <script src="/static/js/websocket.js" defer></script>
 </head>
 <body>
-Hello koook
+    <div class="content">
+
+        <div class="ip-input">
+            <div>
+                <label for="ip-address">Kakoot!</label><br>
+                <input id="ip-address" placeholder="IP Address" type="text"><br>
+                <button>Enter game</button>
+            </div>
+        </div>
+
+        <div id="answer-selector">
+            <button id="answer1">Answer 1</button>
+            <button id="answer2">Answer 2</button>
+            <button id="answer3">Answer 3</button>
+            <button id="answer4">Answer 4</button>
+        </div>
+    </div>
 </body>
 </html>

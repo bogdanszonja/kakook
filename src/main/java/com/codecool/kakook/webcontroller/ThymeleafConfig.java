@@ -1,4 +1,4 @@
-package com.codecool.kakook;
+package com.codecool.kakook.webcontroller;
 
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.templatemode.TemplateMode;

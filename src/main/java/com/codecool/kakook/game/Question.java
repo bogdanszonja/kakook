@@ -1,4 +1,4 @@
-package com.codecool.kakook;
+package com.codecool.kakook.game;
 
 import java.util.List;
 
