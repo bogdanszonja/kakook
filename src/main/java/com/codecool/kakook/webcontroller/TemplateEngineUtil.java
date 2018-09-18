@@ -1,4 +1,4 @@
-package com.codecool.kakook;
+package com.codecool.kakook.webcontroller;
 
 import javax.servlet.ServletContext;
 import javax.servlet.annotation.WebListener;

@@ -1,0 +1,35 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    width: 100vw;
+    height: 100vh;
+    background: green;
+}
+
+.ip-input {
+    width: 100vw;
+    height: 100vh;
+    display: table;
+}
+
+.ip-input div:first-child {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.ip-input label {
+    font-size: xx-large;
+    color: white;
+}
+
+.ip-input input {
+
+}
+
+#answer-selector {
+    display: none;
+}
