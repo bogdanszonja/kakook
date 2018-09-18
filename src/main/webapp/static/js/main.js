@@ -1,9 +1,9 @@
 $(document).ready(function () {
-    webSocket.init("ws://192.168.160.24:8080/websocket");
+    webSocket.init("ws://localhost:8080/websocket");
 });
 
-$("button").click(function () {
+$(".nickname-input button").click(function () {
     event.preventDefault();
     console.log($(this).attr("id"));
-    webSocket.sendAnswer($(this).attr("id"));
+    webSocket.sendNickname($(".nickname-input input").val());
 });
