@@ -6,6 +6,7 @@ public class Game {
 
     private UserController userController = UserController.getInstance();
     private QuestionController questionController = QuestionController.getInstance();
+    private AdminController adminController = AdminController.getInstance();
 
     public void startGame() {
         questionController.createQuestions();
@@ -13,10 +14,11 @@ public class Game {
         for(User user: users) {
             user.startGame();
         }
+        adminController.getAdmin().startGame();
     }
 
-    public Question nextQuestion() {
-        return questionController.getQuestions().peekFirst();
+    private Question nextQuestion() {
+        return questionController.getQuestions().iterator().next();
     }
 
     public void sendQuestion() {
@@ -24,5 +26,6 @@ public class Game {
         for(User user: users) {
             user.sendQuestion();
         }
+        adminController.getAdmin().sendQuestion(nextQuestion());
     }
 }
