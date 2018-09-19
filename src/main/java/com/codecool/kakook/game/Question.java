@@ -1,5 +1,6 @@
 package com.codecool.kakook.game;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Question {
@@ -11,6 +12,20 @@ public class Question {
     public Question(String description, Answer goodAnswer, List<Answer> allAnswers) {
         this.description = description;
         this.goodAnswer = goodAnswer;
+        Collections.shuffle(allAnswers);
         this.allAnswers = allAnswers;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Answer getGoodAnswer() {
+        return goodAnswer;
+    }
+
+    public List<Answer> getAllAnswers() {
+        return allAnswers;
+    }
+
 }

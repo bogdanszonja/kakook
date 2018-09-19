@@ -2,6 +2,7 @@ package com.codecool.kakook.webcontroller;
 
 import java.io.IOException;
 
+import com.codecool.kakook.game.Question;
 import com.codecool.kakook.game.User;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -41,7 +42,7 @@ public class WebSocketClient extends User {
         System.out.println(session.getRemoteAddress().getHostString() + " closed!");
     }
 
-    public void sendMessage(String message){
+    private void sendMessage(String message){
         try {
             session.getRemote().sendString(message);
         } catch (IOException e){
@@ -61,5 +62,20 @@ public class WebSocketClient extends User {
         }
         return null;
     }
+
+    @Override
+    public void startGame() {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("action", "start_game");
+        sendMessage(jsonObject.toString());
+    }
+
+    @Override
+    public void sendQuestion() {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("action", "new_question_shown");
+        sendMessage(jsonObject.toString());
+    }
+
 
 }
