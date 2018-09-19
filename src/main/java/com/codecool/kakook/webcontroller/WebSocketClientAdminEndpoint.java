@@ -4,12 +4,12 @@ import javax.servlet.annotation.WebServlet;
 import org.eclipse.jetty.websocket.servlet.WebSocketServlet;
 import org.eclipse.jetty.websocket.servlet.WebSocketServletFactory;
 
-@WebServlet(urlPatterns="/websocket")
-public class WebSocketEndpoint extends WebSocketServlet{
+@WebServlet(urlPatterns="/adminwebsocket")
+public class WebSocketClientAdminEndpoint extends WebSocketServlet{
 
     @Override
     public void configure(WebSocketServletFactory factory) {
-        factory.register(WebSocketClient.class);
+        factory.register(WebSocketClientAdmin.class);
     }
 
 }

@@ -56,6 +56,7 @@ public class WebSocketClient extends User {
             JsonObject response = new JsonObject();
             response.addProperty("action", "setup_nickname");
             response.addProperty("success", true);
+            response.addProperty("nickname", jsonObject.get("nickname").getAsString());
             return response.toString();
         }
         return null;

@@ -58,6 +58,7 @@ body {
 }
 
 #answer-selector {
+    display: none;
     position: relative;
     width: 100vw;
     height: 100vh;
@@ -99,11 +100,14 @@ body {
 }
 
 .loading-screen {
+    display: none;
     background-color: blue;
     color: white;
 }
 
 .loading-screen span {
+    margin-top: 10px;
+    padding: 0 15px 0 15px;
     font-size: 2.4em;
     display: block;
 }
@@ -112,7 +116,23 @@ body {
     margin-top: 40px;
 }
 
+.game-starting {
+    display: none;
+    color: white;
+    font-size: 2.4em;
+    line-height: 1.9em;
+    background-color: red;
+}
+
+.waiting-for-answer{
+    display: none;
+    color: white;
+    background-color: blue;
+    font-size: 2.4em;
+}
+
 .answer {
+    display: none;
     color: white;
 }
 

@@ -15,7 +15,18 @@ let webSocket = {
         console.log("closed")
     },
     _onMessage: function (evt) {
-        console.log(evt.data)
+        console.log(evt.data);
+        let response = JSON.parse(evt.data);
+        if (response.hasOwnProperty("action") && response["action"] === "setup_nickname" && response["success"] === true )
+            narrative.setup_nickname_success(response["nickname"]);
+        else if (response.hasOwnProperty("action") && response["action"] === "send_answer" && response["success"] === true )
+            narrative.on_answer_sent(response["answer"]);
+        else if (response.hasOwnProperty("server_action") && response["server_action"] === "start_game")
+            narrative.start_game();
+        else if (response.hasOwnProperty("server_action") && response["server_action"] === "new_question_shown")
+            narrative.on_new_question();
+        else if (response.hasOwnProperty("server_action") && response["server_action"] === "answer_shown")
+            narrative.on_answer(response["is_answer_good"], response["rank"], response["points"])
     },
     _onError: function (evt) {
 
@@ -24,7 +35,7 @@ let webSocket = {
         this.websocket.send(message);
     },
     sendAnswer: function (answer) {
-        this._sendMessage(JSON.stringify({'answer': answer}));
+        this._sendMessage(JSON.stringify({'action': 'send_answer', 'answer': answer}));
     },
     sendNickname: function (nickname) {
         this._sendMessage(JSON.stringify({'action': 'setup_nickname', 'nickname': nickname}))
