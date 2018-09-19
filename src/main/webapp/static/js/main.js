@@ -4,6 +4,16 @@ $(document).ready(function () {
 
 $(".nickname-input button").click(function () {
     event.preventDefault();
-    console.log($(this).attr("id"));
-    webSocket.sendNickname($(".nickname-input input").val());
+    let inputVal = $(".nickname-input input").val();
+    if (inputVal === "")
+        alert("Please choose a nickname!");
+    else if (inputVal.length > 18)
+        alert("Nickname too long! Max length is 17!");
+    if (inputVal !== "")
+        webSocket.sendNickname(inputVal);
+});
+
+$(".answer-selector button").click(function () {
+    event.preventDefault();
+    webSocket.sendAnswer($(this).attr("id"));
 });

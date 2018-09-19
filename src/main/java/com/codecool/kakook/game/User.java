@@ -13,6 +13,7 @@ public abstract class User {
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
+        AdminController.getInstance().getAdmin().sendNewNickname(nickname);
     }
 
     public void increasePoints(int points){

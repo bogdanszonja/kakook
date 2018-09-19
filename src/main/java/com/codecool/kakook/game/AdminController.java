@@ -13,8 +13,22 @@ public class AdminController {
         return instance;
     }
 
+    public WebSocketClientAdmin getAdmin(){
+        return this.admin;
+    }
+
     public void setAdmin(WebSocketClientAdmin admin){
         if (this.admin == null)
             this.admin = admin;
+    }
+
+    public void removeAdmin(){
+        this.admin = null;
+    }
+
+    public boolean isAdminSet(){
+        if (admin == null)
+            return false;
+        return true;
     }
 }

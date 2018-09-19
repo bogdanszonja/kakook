@@ -38,15 +38,23 @@ public class WebSocketClientAdmin {
     @OnWebSocketClose
     public void onClose(Session session, int status, String reason) {
         this.session = session;
+        AdminController.getInstance().removeAdmin();
         System.out.println(session.getRemoteAddress().getHostString() + " closed!");
     }
 
-    public void sendMessage(String message){
+    private void sendMessage(String message){
         try {
             session.getRemote().sendString(message);
         } catch (IOException e){
             e.printStackTrace();
         }
+    }
+
+    public void sendNewNickname(String nickname){
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("server_action", "new_nickname");
+        jsonObject.addProperty("nickname", nickname);
+        sendMessage(jsonObject.toString());
     }
 
     private String messageHandler(String message){

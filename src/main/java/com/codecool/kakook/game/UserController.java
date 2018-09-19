@@ -15,9 +15,6 @@ public class UserController {
 
     public void addUser(User user){
         users.add(user);
-        System.out.println(users.size());
-        for (User userr:users)
-            userr.sendMessage("New user connected");
     }
 
     public void removeUser(User user){
