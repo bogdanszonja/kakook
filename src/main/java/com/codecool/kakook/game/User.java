@@ -1,16 +1,31 @@
 package com.codecool.kakook.game;
 
-public class User {
 
-    private int id;
-    private static int idCounter = 1;
-    private String nickName;
-    private int score;
+public abstract class User {
 
-    public User(String nickName, int score) {
-        this.nickName = nickName;
-        this.score = score;
-        this.id = idCounter;
-        idCounter++;
+    private String nickname;
+
+    private int points = 0;
+
+    public String getNickname() {
+        return nickname;
     }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public void increasePoints(int points){
+        this.points += points;
+    }
+
+    public void addThisToUserController(){
+        UserController.getInstance().addUser(this);
+    }
+
+    public void removeThisFromUserController(){
+        UserController.getInstance().removeUser(this);
+    }
+
+    public abstract void sendMessage(String message);
 }

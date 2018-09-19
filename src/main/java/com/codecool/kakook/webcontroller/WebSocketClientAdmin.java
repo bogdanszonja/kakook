@@ -2,6 +2,7 @@ package com.codecool.kakook.webcontroller;
 
 import java.io.IOException;
 
+import com.codecool.kakook.game.AdminController;
 import com.codecool.kakook.game.User;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -13,7 +14,7 @@ import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
 import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 
 @WebSocket
-public class WebSocketClient extends User {
+public class WebSocketClientAdmin {
 
     private Session session;
 
@@ -30,14 +31,13 @@ public class WebSocketClient extends User {
     @OnWebSocketConnect
     public void onConnect(Session session) throws IOException {
         this.session = session;
-        super.addThisToUserController();
+        AdminController.getInstance().setAdmin(this);
         System.out.println(session.getRemoteAddress().getHostString() + " connected!");
     }
 
     @OnWebSocketClose
     public void onClose(Session session, int status, String reason) {
         this.session = session;
-        super.removeThisFromUserController();
         System.out.println(session.getRemoteAddress().getHostString() + " closed!");
     }
 
@@ -50,14 +50,6 @@ public class WebSocketClient extends User {
     }
 
     private String messageHandler(String message){
-        JsonObject jsonObject = new JsonParser().parse(message).getAsJsonObject();
-        if (jsonObject.has("action") && jsonObject.get("action").getAsString().equals("setup_nickname")){
-            super.setNickname(jsonObject.get("nickname").getAsString());
-            JsonObject response = new JsonObject();
-            response.addProperty("action", "setup_nickname");
-            response.addProperty("success", true);
-            return response.toString();
-        }
         return null;
     }
 

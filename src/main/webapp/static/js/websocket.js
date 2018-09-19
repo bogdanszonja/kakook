@@ -24,9 +24,9 @@ let webSocket = {
         this.websocket.send(message);
     },
     sendAnswer: function (answer) {
-        this._sendMessage(answer);
+        this._sendMessage(JSON.stringify({'answer': answer}));
     },
     sendNickname: function (nickname) {
-        this._sendMessage(nickname)
+        this._sendMessage(JSON.stringify({'action': 'setup_nickname', 'nickname': nickname}))
     }
 };
