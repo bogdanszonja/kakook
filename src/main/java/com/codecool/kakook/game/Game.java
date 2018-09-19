@@ -17,8 +17,8 @@ public class Game {
         adminController.getAdmin().startGame();
     }
 
-    public Question nextQuestion() {
-        return questionController.getQuestions().peekFirst();
+    private Question nextQuestion() {
+        return questionController.getQuestions().iterator().next();
     }
 
     public void sendQuestion() {
@@ -26,5 +26,6 @@ public class Game {
         for(User user: users) {
             user.sendQuestion();
         }
+        adminController.getAdmin().sendQuestion(nextQuestion());
     }
 }
