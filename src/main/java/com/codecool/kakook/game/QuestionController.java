@@ -2,12 +2,13 @@ package com.codecool.kakook.game;
 
 import com.codecool.kakook.util.FileReader;
 
-import java.util.ArrayList;
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.List;
 
 public class QuestionController {
 
-    private List<Question> questions = new ArrayList<>();
+    private Deque<Question> questions = new ArrayDeque<>();
 
     private static QuestionController instance = new QuestionController();
 
