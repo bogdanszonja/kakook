@@ -25,6 +25,7 @@ body {
 }
 
 .waiting-players {
+    display: none;
     background-color: red;
     width: 100vw;
     height: 100vh;
@@ -55,4 +56,51 @@ body {
 .waiting-players .nickname {
     font-size: 1.5em;
     padding: 8px;
+}
+
+.game-starting {
+    display: none;
+    color: white;
+    font-size: 2.4em;
+    line-height: 1.9em;
+    background-color: red;
+}
+
+.question-wrapper .question {
+    padding: 30px;
+    color: black;
+    font-size: 3em;
+    text-align: center;
+}
+
+.question-wrapper .answer-wrapper {
+    position: absolute;
+    bottom: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+    padding: 20px;
+}
+
+.question-wrapper .answer-wrapper .answer {
+    padding: 30px;
+    font-size: 2em;
+}
+
+.question-wrapper .answer-wrapper #answer1 {
+    background-color: red;
+
+}
+
+.question-wrapper .answer-wrapper #answer2 {
+    background-color: blue;
+}
+
+.question-wrapper .answer-wrapper #answer3 {
+    background-color: green;
+
+}
+
+.question-wrapper .answer-wrapper #answer4 {
+    background-color: #ffa700;
 }

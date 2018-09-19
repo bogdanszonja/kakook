@@ -84,7 +84,7 @@ body {
 #answer-selector #answer2{
     top: 0;
     right: 0;
-    background-color: #fff139;
+    background-color: blue;
 }
 
 #answer-selector #answer3{
@@ -96,7 +96,7 @@ body {
 #answer-selector #answer4{
     bottom: 0;
     right: 0;
-    background-color: blue;
+    background-color: #ffa700;
 }
 
 .loading-screen {

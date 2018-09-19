@@ -1,5 +1,6 @@
 $(document).ready(function () {
-    webSocket.init("ws://localhost:8080/websocket");
+    console.log(window.location.hostname);
+    webSocket.init("ws://" + window.location.hostname + ":8080/websocket");
 });
 
 $(".nickname-input button").click(function () {
