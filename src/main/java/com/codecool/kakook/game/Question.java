@@ -5,12 +5,12 @@ import java.util.List;
 public class Question {
 
     private String description;
-    private String goodAnswer;
-    private List<String> wrongAnswers;
+    private Answer goodAnswer;
+    private List<Answer> allAnswers;
 
-    public Question(String description, String goodAnswer, List<String> wrongAnswers) {
+    public Question(String description, Answer goodAnswer, List<Answer> allAnswers) {
         this.description = description;
         this.goodAnswer = goodAnswer;
-        this.wrongAnswers = wrongAnswers;
+        this.allAnswers = allAnswers;
     }
 }
