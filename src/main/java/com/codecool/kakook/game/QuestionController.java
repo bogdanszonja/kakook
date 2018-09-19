@@ -27,4 +27,8 @@ public class QuestionController {
         }
     }
 
+    public Deque<Question> getQuestions() {
+        return questions;
+    }
+
 }
