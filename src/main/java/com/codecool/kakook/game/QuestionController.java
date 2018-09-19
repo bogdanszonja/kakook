@@ -1,5 +1,7 @@
 package com.codecool.kakook.game;
 
+import com.codecool.kakook.util.FileReader;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,11 +19,11 @@ public class QuestionController {
         return instance;
     }
 
-    private void getActualQuestion() {
-
+    void createQuestions() {
+        List<String> file = FileReader.readFile();
+        for (int i = 0; i < file.size(); i += 5) {
+            questions.add(new Question(file.get(i), file.get(i + 1), file.subList(i + 2, i + 5)));
+        }
     }
 
-    private void randomizeQuestions() {
-
-    }
 }
