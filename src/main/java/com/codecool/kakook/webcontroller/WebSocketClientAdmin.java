@@ -62,6 +62,13 @@ public class WebSocketClientAdmin {
         return null;
     }
 
+    public void startGame() {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("action", "start_game");
+        sendMessage(jsonObject.toString());
+    }
+
+
     public void sendQuestion(Question question) {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("action", "new_question");
