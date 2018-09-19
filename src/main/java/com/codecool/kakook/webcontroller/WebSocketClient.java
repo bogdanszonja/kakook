@@ -66,14 +66,14 @@ public class WebSocketClient extends User {
     @Override
     public void startGame() {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("action", "start_game");
+        jsonObject.addProperty("server_action", "start_game");
         sendMessage(jsonObject.toString());
     }
 
     @Override
     public void sendQuestion() {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("action", "new_question_shown");
+        jsonObject.addProperty("server_action", "new_question_shown");
         sendMessage(jsonObject.toString());
     }
 
