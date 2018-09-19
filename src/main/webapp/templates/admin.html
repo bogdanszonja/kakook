@@ -15,8 +15,26 @@
 <body>
 <div class="content">
     <div class="waiting-players">
+        <button id="start-game">Start game</button>
         <span class="to-connect">To connect, open: <span th:text="${ip}" class="ip"></span></span>
         <div class="nicknames"></div>
+    </div>
+
+    <div class="game-starting table">
+        <div>
+            Prepare yourself!<br>
+            Game is starting!
+        </div>
+    </div>
+
+    <div class="question-wrapper">
+        <div class="question">What type of tehcnologies did we use during our last week?</div>
+        <div class="answer-wrapper">
+            <span class="answer" id="answer1">Javascript, html jquery</span>
+            <span class="answer" id="answer2">Webcosket</span>
+            <span class="answer" id="answer3">SQL with java jql</span>
+            <span class="answer" id="answer4">None of them abowe was used during the week</span>
+        </div>
     </div>
 
 

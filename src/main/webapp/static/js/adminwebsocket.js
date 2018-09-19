@@ -18,12 +18,19 @@ let webSocket = {
         console.log(evt.data);
         let response = JSON.parse(evt.data);
         if (response.hasOwnProperty("server_action") && response["server_action"] === "new_nickname")
-            $(".nicknames").append("<i class=\"nickname\">" + response["nickname"] + "</i>")
+            narrative.on_new_nickname(response["nickname"]);
+        else if (response.hasOwnProperty("server_action") && response["server_action"] === "start_game")
+            narrative.start_game();
+        else if (response.hasOwnProperty("server_action") && response["server_action"] === "new_question")
+            narrative.start_game(response["description"], response["answers"]);
     },
     _onError: function (evt) {
 
     },
     _sendMessage: function (message) {
         this.websocket.send(message);
+    },
+    startGame: function () {
+        this._sendMessage(JSON.stringify({"action": "start_game"}))
     }
 };
