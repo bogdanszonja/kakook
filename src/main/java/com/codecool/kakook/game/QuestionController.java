@@ -7,6 +7,16 @@ public class QuestionController {
 
     private List<Question> questions = new ArrayList<>();
 
+    private static QuestionController instance = new QuestionController();
+
+    private QuestionController() {
+
+    }
+
+    public static QuestionController getInstance() {
+        return instance;
+    }
+
     private void getActualQuestion() {
 
     }
