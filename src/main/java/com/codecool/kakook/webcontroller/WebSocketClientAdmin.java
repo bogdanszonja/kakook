@@ -61,6 +61,13 @@ public class WebSocketClientAdmin {
     }
 
     private String messageHandler(String message){
+        JsonObject jsonObject = new JsonParser().parse(message).getAsJsonObject();
+        if (jsonObject.has("action") && jsonObject.get("action").getAsString().equals("start_game")){
+            JsonObject response = new JsonObject();
+            response.addProperty("action", "start_game");
+            response.addProperty("success", true);
+            return response.toString();
+        }
         return null;
     }
 

@@ -9,8 +9,8 @@ let narrative = {
     on_new_question: function (question, answers) {
         $(".game-starting").hide();
         $(".question-wrapper .question").html(question);
-        let i = 0;
-        for (let answer in answers) {
+        var i = 0;
+        for (var answer in answers) {
             $("#answer" + i).html(answer);
             i++;
         }
