@@ -28,5 +28,7 @@ public abstract class User {
         UserController.getInstance().removeUser(this);
     }
 
-    public abstract void sendMessage(String message);
+    public abstract void startGame();
+
+    public abstract void sendQuestion();
 }

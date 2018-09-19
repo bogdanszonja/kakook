@@ -3,6 +3,7 @@ package com.codecool.kakook.webcontroller;
 import java.io.IOException;
 
 import com.codecool.kakook.game.AdminController;
+import com.codecool.kakook.game.Question;
 import com.codecool.kakook.game.User;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -61,4 +62,12 @@ public class WebSocketClientAdmin {
         return null;
     }
 
+    public void sendQuestion(Question question) {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("action", "new_question");
+        jsonObject.addProperty("description", question.getDescription());
+        jsonObject.addProperty("good_answer", question.getGoodAnswer().toString());
+        jsonObject.addProperty("answers", question.getAllAnswers().toString());
+        sendMessage(jsonObject.toString());
+    }
 }
