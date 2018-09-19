@@ -4,9 +4,17 @@ import java.util.List;
 
 public class Game {
 
+    private static Game instance = new Game();
+
     private UserController userController = UserController.getInstance();
     private QuestionController questionController = QuestionController.getInstance();
     private AdminController adminController = AdminController.getInstance();
+
+    private Game() {}
+
+    public static Game getInstance() {
+        return instance;
+    }
 
     public void startGame() {
         questionController.createQuestions();
