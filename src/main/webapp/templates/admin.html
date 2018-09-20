@@ -17,8 +17,8 @@
 <body>
 <div class="content">
     <div class="waiting-players">
-        <button id="start-game">Start game</button>
         <span class="to-connect">To connect, open: <span th:text="${ip}" class="ip"></span></span>
+        <button id="start-game">Start game</button>
         <div class="nicknames"></div>
     </div>
 
@@ -34,10 +34,62 @@
         <div class="question">What type of tehcnologies did we use during our last week?</div>
         <div class="answer-statistic"></div>
         <div class="answer-wrapper">
-            <span class="answer" id="answer1">Javascript, html jquery</span>
-            <span class="answer" id="answer2">Webcosket</span>
-            <span class="answer" id="answer3">SQL with java jql</span>
-            <span class="answer" id="answer4">None of them abowe was used during the week</span>
+            <div class="answer" id="answer1">
+                <table>
+                    <tr class="append-check">
+                        <td>
+                            <i class="fas fa-square"></i>
+                        </td>
+                        <td>
+                            <span class="answer-text">Javascript, html jquery</span>
+                        </td>
+                        <td class="check" align="right">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="answer" id="answer2">
+                <table>
+                    <tr class="append-check">
+                        <td>
+                            <i class="fas fa-heart"></i>
+                        </td>
+                        <td>
+                            <span class="answer-text">Webcosket</span>
+                        </td>
+                        <td class="check" align="right">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="answer" id="answer3">
+                <table>
+                    <tr class="append-check">
+                        <td>
+                            <i class="fas fa-star"></i>
+                        </td>
+                        <td>
+                            <span class="answer-text">SQL with java jql</span>
+                        </td>
+                        <td class="check" align="right">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="answer" id="answer4">
+                <table>
+                    <tr class="append-check">
+                        <td>
+                            <i class="fas fa-circle"></i>
+                        </td>
+                        <td>
+                            <span class="answer-text">None of them abowe was used during the week</span>
+                        </td>
+                        <td class="check" align="right">
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
 

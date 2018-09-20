@@ -25,16 +25,17 @@ body {
 }
 
 .waiting-players {
-    background-color: red;
+    background-color: blue;
     width: 100vw;
     height: 100vh;
 }
 
 .waiting-players .to-connect{
-    color: red;
-    background-color: black;
+    border-bottom: 1px solid black;
+    color: white;
+    background-color: blue;
     padding: 40px 0 40px 0;
-    font-size: 3em;
+    font-size: 2.8em;
     text-align: center;
     display: block;
 }
@@ -44,11 +45,20 @@ body {
     font-weight: bold;
 }
 
+.waiting-players button {
+    border: none;
+    background: white;
+    color: black;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 2.4em;
+}
+
 .waiting-players .nicknames {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-gap: 10px;
-    background-color: red;
     padding: 20px;
 }
 
@@ -88,9 +98,22 @@ body {
 }
 
 .question-wrapper .answer-wrapper .answer {
-    padding: 30px;
+    padding: 30px 30px 30px 0;
     font-size: 2em;
     min-height: 75px;
+}
+
+.question-wrapper .answer-wrapper table {
+    table-layout: auto;
+    min-height: 75px;
+}
+
+.question-wrapper .answer-wrapper table td{
+    padding-left: 30px;
+}
+
+.question-wrapper .answer-wrapper table .check{
+    width: 100%;
 }
 
 .question-wrapper .answer-wrapper #answer1 {
