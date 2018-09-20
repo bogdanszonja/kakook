@@ -2,10 +2,12 @@ package com.codecool.kakook.webcontroller;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 import com.codecool.kakook.game.Game;
 import com.codecool.kakook.game.Question;
 import com.codecool.kakook.game.User;
+import com.codecool.kakook.game.UserController;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -68,7 +70,7 @@ public class WebSocketClient extends User {
             response.addProperty("success", true);
             response.addProperty("answer", jsonObject.get("answer").getAsString());
             String answer = jsonObject.get("answer").getAsString();
-            Game.getInstance().increasePoints(answer, this, LocalDateTime.now());
+            Game.getInstance().increasePoints(answer, this, ZonedDateTime.now());
             return response.toString();
         }
         return null;
@@ -94,7 +96,7 @@ public class WebSocketClient extends User {
         jsonObject.addProperty("server_action", "answer_shown");
         jsonObject.addProperty("is_answer_good", super.isActualAnswerGood());
         jsonObject.addProperty("points", super.getPoints());
-        jsonObject.addProperty("rank", 0);
+        jsonObject.addProperty("rank", Game.getInstance().sendRank(this));
         sendMessage(jsonObject.toString());
     }
 

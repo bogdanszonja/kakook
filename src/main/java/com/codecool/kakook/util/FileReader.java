@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 
 public class FileReader {
 
-    private static String fileName = "/home/milan/codecool/OOP_7_TW/kakook/src/main/java/com/codecool/kakook/util/test_questions";
+    private static String fileName = "/home/szonja/Documents/CodeCool/OOP/6th_SI-TW/kakook/src/main/java/com/codecool/kakook/util/test_questions";
 
     public static List<String> readFile() {
         try {
