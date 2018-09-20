@@ -1,6 +1,7 @@
 package com.codecool.kakook.webcontroller;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 import com.codecool.kakook.game.Game;
 import com.codecool.kakook.game.Question;
@@ -67,7 +68,7 @@ public class WebSocketClient extends User {
             response.addProperty("success", true);
             response.addProperty("answer", jsonObject.get("answer").getAsString());
             String answer = jsonObject.get("answer").getAsString();
-            Game.getInstance().checkAnswerForUser(answer, this);
+            Game.getInstance().increasePoints(answer, this, LocalDateTime.now());
             return response.toString();
         }
         return null;
