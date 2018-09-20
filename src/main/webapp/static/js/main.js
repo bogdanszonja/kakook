@@ -14,7 +14,7 @@ $(".nickname-input button").click(function () {
         webSocket.sendNickname(inputVal);
 });
 
-$(".answer-selector button").click(function () {
+$("#answer-selector button").click(function () {
     event.preventDefault();
     webSocket.sendAnswer($(this).attr("id"));
 });

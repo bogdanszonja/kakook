@@ -126,8 +126,6 @@ body {
 
 .waiting-for-answer{
     display: none;
-    color: white;
-    background-color: blue;
     font-size: 2.4em;
 }
 

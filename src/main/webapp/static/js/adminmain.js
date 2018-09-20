@@ -6,3 +6,8 @@ $("#start-game").click(function () {
    event.preventDefault();
    webSocket.startGame();
 });
+
+$("#next-question").click(function () {
+    event.preventDefault();
+    webSocket.nextQuestion();
+});

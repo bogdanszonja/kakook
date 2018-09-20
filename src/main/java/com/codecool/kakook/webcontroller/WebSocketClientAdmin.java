@@ -66,6 +66,13 @@ public class WebSocketClientAdmin {
             response.addProperty("success", true);
             return response.toString();
         }
+        if (jsonObject.has("action") && jsonObject.get("action").getAsString().equals("next_question")){
+            Game.getInstance().sendQuestion();
+            JsonObject response = new JsonObject();
+            response.addProperty("action", "next_question");
+            response.addProperty("success", true);
+            return response.toString();
+        }
         return null;
     }
 
@@ -85,6 +92,14 @@ public class WebSocketClientAdmin {
         jsonObject.addProperty("server_action", "new_question");
         jsonObject.addProperty("description", question.getDescription());
         jsonObject.add("answers", answers);
+        sendMessage(jsonObject.toString());
+    }
+
+    public void sendAnswer(int goodAnswerNumber) {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("server_action", "show_answer");
+        jsonObject.addProperty("good_answer_number", goodAnswerNumber);
+        jsonObject.addProperty("answer_statistic", 0);
         sendMessage(jsonObject.toString());
     }
 }

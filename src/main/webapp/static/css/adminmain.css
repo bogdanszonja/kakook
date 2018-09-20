@@ -110,3 +110,7 @@ body {
 .question-wrapper .answer-wrapper #answer4 {
     background-color: #ffa700;
 }
+
+#next-question {
+    display: none;
+}
