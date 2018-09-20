@@ -3,6 +3,8 @@ package com.codecool.kakook.game;
 import com.codecool.kakook.util.Countdown;
 
 import java.time.LocalDateTime;
+import javax.swing.text.html.HTMLDocument;
+import java.util.Iterator;
 import java.util.List;
 
 public class Game {
@@ -31,10 +33,16 @@ public class Game {
             user.startGame();
         }
         adminController.getAdmin().startGame();
+        try{
+            Thread.sleep(3000);
+        } catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        sendQuestion();
     }
 
     private Question nextQuestion() {
-        actualQuestion = questionController.getQuestions().iterator().next();
+        actualQuestion = questionController.getQuestions().poll();
         return actualQuestion;
     }
 
@@ -51,7 +59,16 @@ public class Game {
 
     public void increasePoints(String answerNumber, User user, LocalDateTime timeOfAnswer) {
         if (answerNumber.equals("answer" + actualQuestion.getGoodAnswerNumber())) {
+            user.setActualAnswerGood(true);
             user.increasePoints(POINT_FOR_GOOD_ANSWER + (timeOfAnswer.getNano() - timeOfQuestion.getNano()));
+        } else
+            user.setActualAnswerGood(false);
+    }
+
+    public void sendAnswer(){
+        AdminController.getInstance().getAdmin().sendAnswer(actualQuestion.getGoodAnswerNumber());
+        for(User user: userController.getUsers()) {
+            user.answerShown();
         }
     }
 }

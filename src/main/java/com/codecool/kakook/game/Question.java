@@ -21,7 +21,7 @@ public class Question {
     }
 
     public int getGoodAnswerNumber() {
-        return allAnswers.indexOf(goodAnswer);
+        return allAnswers.indexOf(goodAnswer) + 1;
     }
 
     public List<Answer> getAllAnswers() {

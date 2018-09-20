@@ -1,5 +1,7 @@
 package com.codecool.kakook.util;
 
+import com.codecool.kakook.game.Game;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,6 +15,7 @@ public class Countdown {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            Game.getInstance().sendAnswer();
             timer.stop();
         }
     });
