@@ -20,6 +20,8 @@ let narrative = {
         for (let i = 1; i <= 4; i++){
             if (i !== good_answer_number)
                 $("#answer" + i).css("opacity", 0.5);
+            else
+                $("#answer" + i).append(" OK");
         }
 
     }
