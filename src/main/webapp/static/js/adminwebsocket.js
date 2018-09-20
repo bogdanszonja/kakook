@@ -23,6 +23,8 @@ let webSocket = {
             narrative.start_game();
         else if (response.hasOwnProperty("server_action") && response["server_action"] === "new_question")
             narrative.on_new_question(response["description"], response["answers"]);
+        else if (response.hasOwnProperty("server_action") && response["server_action"] === "answer")
+            narrative.on_answer(response["good_answer_number"], response["answer_statistic"]);
     },
     _onError: function (evt) {
 

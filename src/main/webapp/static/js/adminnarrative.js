@@ -11,9 +11,18 @@ let narrative = {
         $(".question-wrapper .question").html(question);
         var i = 0;
         for (var answer in answers) {
-            $("#answer" + i).html(answer);
+            $("#answer" + i).html(answer).css("opacity", 1);
             i++;
         }
         $(".question-wrapper").show();
+    },
+    on_answer: function (good_answer_number, answer_statistic) {
+        for (let i = 1; i <= 4; i++){
+            if (i !== good_answer_number)
+                $("#answer" + i).css("opacity", 0.5);
+            else
+                $("#answer" + i).append(" OK");
+        }
+
     }
 };

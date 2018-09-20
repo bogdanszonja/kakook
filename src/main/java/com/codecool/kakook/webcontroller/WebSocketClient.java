@@ -60,6 +60,14 @@ public class WebSocketClient extends User {
             response.addProperty("nickname", jsonObject.get("nickname").getAsString());
             return response.toString();
         }
+        else if (jsonObject.has("action") && jsonObject.get("action").getAsString().equals("send_answer")){
+            JsonObject response = new JsonObject();
+            response.addProperty("action", "send_answer");
+            response.addProperty("success", true);
+            response.addProperty("answer", jsonObject.get("answer").getAsString());
+            String answer = jsonObject.get("answer").getAsString();
+            return response.toString();
+        }
         return null;
     }
 
