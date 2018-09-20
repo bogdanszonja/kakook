@@ -2,9 +2,11 @@ package com.codecool.kakook.game;
 
 import com.codecool.kakook.util.Countdown;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
-import javax.swing.text.html.HTMLDocument;
-import java.util.Iterator;
+import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalField;
 import java.util.List;
 
 public class Game {
@@ -16,9 +18,9 @@ public class Game {
     private AdminController adminController = AdminController.getInstance();
 
     private Question actualQuestion;
-    private LocalDateTime timeOfQuestion = null;
+    private ZonedDateTime timeOfQuestion = null;
 
-    private final int POINT_FOR_GOOD_ANSWER = 500;
+    private final int POINT_FOR_GOOD_ANSWER = 600;
 
     private Game() {}
 
@@ -53,22 +55,30 @@ public class Game {
         }
         adminController.getAdmin().sendQuestion(nextQuestion());
         Countdown.timer.start();
-        timeOfQuestion = LocalDateTime.now();
+        timeOfQuestion = ZonedDateTime.now();
 
     }
 
-    public void increasePoints(String answerNumber, User user, LocalDateTime timeOfAnswer) {
+    public void increasePoints(String answerNumber, User user, ZonedDateTime timeOfAnswer) {
         if (answerNumber.equals("answer" + actualQuestion.getGoodAnswerNumber())) {
             user.setActualAnswerGood(true);
-            user.increasePoints(POINT_FOR_GOOD_ANSWER + (timeOfAnswer.getNano() - timeOfQuestion.getNano()));
-        } else
+            System.out.println("time of question: " + timeOfQuestion + ", time of answer: " + timeOfAnswer + " kivonva duration: " + Duration.between(timeOfQuestion, timeOfAnswer).getNano() / 1000000);
+            Duration duration = Duration.between(timeOfQuestion, timeOfAnswer);
+            int secondsPassed = duration.getNano() / 10000000;
+            user.increasePoints(POINT_FOR_GOOD_ANSWER - secondsPassed);
+        } else {
             user.setActualAnswerGood(false);
+        }
     }
 
-    public void sendAnswer(){
+    public void sendAnswer() {
         AdminController.getInstance().getAdmin().sendAnswer(actualQuestion.getGoodAnswerNumber());
         for(User user: userController.getUsers()) {
             user.answerShown();
         }
+    }
+
+    public int sendRank(User user) {
+        return userController.calculateRank(user);
     }
 }
