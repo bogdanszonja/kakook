@@ -87,5 +87,15 @@ public class WebSocketClient extends User {
         sendMessage(jsonObject.toString());
     }
 
+    @Override
+    public void answerShown() {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("server_action", "answer_shown");
+        jsonObject.addProperty("is_answer_good", super.isActualAnswerGood());
+        jsonObject.addProperty("points", super.getPoints());
+        jsonObject.addProperty("rank", 0);
+        sendMessage(jsonObject.toString());
+    }
+
 
 }

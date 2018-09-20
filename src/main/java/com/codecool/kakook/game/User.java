@@ -7,8 +7,22 @@ public abstract class User {
 
     private int points = 0;
 
+    private boolean isActualAnswerGood;
+
+    public boolean isActualAnswerGood() {
+        return isActualAnswerGood;
+    }
+
+    public void setActualAnswerGood(boolean actualAnswerGood) {
+        isActualAnswerGood = actualAnswerGood;
+    }
+
     public String getNickname() {
         return nickname;
+    }
+
+    public int getPoints() {
+        return points;
     }
 
     public void setNickname(String nickname) {
@@ -31,4 +45,6 @@ public abstract class User {
     public abstract void startGame();
 
     public abstract void sendQuestion();
+
+    public abstract void answerShown();
 }
