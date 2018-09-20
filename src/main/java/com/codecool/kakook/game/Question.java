@@ -20,8 +20,8 @@ public class Question {
         return description;
     }
 
-    public Answer getGoodAnswer() {
-        return goodAnswer;
+    public int getGoodAnswerNumber() {
+        return allAnswers.indexOf(goodAnswer);
     }
 
     public List<Answer> getAllAnswers() {
