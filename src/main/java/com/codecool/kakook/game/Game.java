@@ -12,7 +12,8 @@ public class Game {
     private QuestionController questionController = QuestionController.getInstance();
     private AdminController adminController = AdminController.getInstance();
 
-
+    private Question actualQuestion;
+    private final int POINT_FOR_GOOD_ANSWER = 500;
 
     private Game() {}
 
@@ -30,7 +31,8 @@ public class Game {
     }
 
     private Question nextQuestion() {
-        return questionController.getQuestions().iterator().next();
+        actualQuestion = questionController.getQuestions().iterator().next();
+        return actualQuestion;
     }
 
     public void sendQuestion() {
@@ -42,4 +44,9 @@ public class Game {
         Countdown.timer.start();
     }
 
+    public void checkAnswerForUser(String answerNumber, User user) {
+        if (answerNumber.equals("answer" + actualQuestion.getGoodAnswerNumber())) {
+            user.increasePoints(POINT_FOR_GOOD_ANSWER);
+        }
+    }
 }

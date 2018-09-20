@@ -2,6 +2,7 @@ package com.codecool.kakook.webcontroller;
 
 import java.io.IOException;
 
+import com.codecool.kakook.game.Game;
 import com.codecool.kakook.game.Question;
 import com.codecool.kakook.game.User;
 import com.google.gson.JsonElement;
@@ -66,6 +67,7 @@ public class WebSocketClient extends User {
             response.addProperty("success", true);
             response.addProperty("answer", jsonObject.get("answer").getAsString());
             String answer = jsonObject.get("answer").getAsString();
+            Game.getInstance().checkAnswerForUser(answer, this);
             return response.toString();
         }
         return null;
