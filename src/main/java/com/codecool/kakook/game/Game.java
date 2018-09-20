@@ -1,5 +1,7 @@
 package com.codecool.kakook.game;
 
+import com.codecool.kakook.util.Countdown;
+
 import java.util.List;
 
 public class Game {
@@ -9,6 +11,8 @@ public class Game {
     private UserController userController = UserController.getInstance();
     private QuestionController questionController = QuestionController.getInstance();
     private AdminController adminController = AdminController.getInstance();
+
+
 
     private Game() {}
 
@@ -35,5 +39,7 @@ public class Game {
             user.sendQuestion();
         }
         adminController.getAdmin().sendQuestion(nextQuestion());
+        Countdown.timer.start();
     }
+
 }
