@@ -9,6 +9,7 @@ let narrative = {
         $(".game-starting").show();
     },
     on_new_question: function () {
+        $(".game-starting").hide();
         $(".answer").hide();
         $("#answer-selector").show();
     },

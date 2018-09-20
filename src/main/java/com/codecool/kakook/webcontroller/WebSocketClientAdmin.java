@@ -71,7 +71,7 @@ public class WebSocketClientAdmin {
 
     public void startGame() {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("action", "start_game");
+        jsonObject.addProperty("server_action", "start_game");
         sendMessage(jsonObject.toString());
     }
 
@@ -82,7 +82,7 @@ public class WebSocketClientAdmin {
         for (Answer answer: question.getAllAnswers()) {
             answers.add(answer.getDescription());
         }
-        jsonObject.addProperty("action", "new_question");
+        jsonObject.addProperty("server_action", "new_question");
         jsonObject.addProperty("description", question.getDescription());
         jsonObject.add("answers", answers);
         sendMessage(jsonObject.toString());
