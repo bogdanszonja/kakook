@@ -79,12 +79,15 @@ body {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 20px;
+    grid-auto-rows: 1fr;
     padding: 20px;
+    width: calc(100vw - 40px);
 }
 
 .question-wrapper .answer-wrapper .answer {
     padding: 30px;
     font-size: 2em;
+    min-height: 75px;
 }
 
 .question-wrapper .answer-wrapper #answer1 {
