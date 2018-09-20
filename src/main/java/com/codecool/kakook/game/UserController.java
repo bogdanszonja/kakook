@@ -29,7 +29,7 @@ public class UserController {
 
     public int calculateRank(User user) {
         List<User> newList = new ArrayList<>(users);
-        newList.sort(Comparator.comparing(User::getPoints));
-        return users.indexOf(user) + 1;
+        newList.sort(Comparator.comparing(User::getPoints).reversed());
+        return newList.indexOf(user) + 1;
     }
 }
