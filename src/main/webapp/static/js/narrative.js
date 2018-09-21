@@ -10,32 +10,36 @@ let narrative = {
     },
     on_new_question: function () {
         $(".good-answer").hide();
-        $(".wrong-answer").hide();
+        $(".wrong-answer-show").hide();
+        $(".no-answer").hide();
         $(".game-starting").hide();
         $(".answer").hide();
         $("#answer-selector").show();
     },
     on_answer_sent: function(answer){
         $("#answer-selector").hide();
-        $(".waiting-for-answer .answer-number").html(answer)
+        $(".waiting-for-answer .answer-number").html(answer);
         if (answer === "answer1")
-            $(".waiting-for-answer .answer-color").css("color", "red");
+            $(".waiting-for-answer").css("background-color", "red");
         else if (answer === "answer2")
-            $(".waiting-for-answer .answer-color").css("color", "blue");
+            $(".waiting-for-answer").css("background-color", "blue");
         else if (answer === "answer3")
-            $(".waiting-for-answer .answer-color").css("color", "green");
+            $(".waiting-for-answer").css("background-color", "green");
         else if (answer === "answer4")
-            $(".waiting-for-answer .answer-color").css("color", "#ffa700");
+            $(".waiting-for-answer").css("background-color", "#ffa700");
         $(".waiting-for-answer").show();
 
     },
     on_answer: function (is_answer_good, rank, points) {
+        $("#answer-selector").hide();
         $(".waiting-for-answer").hide();
         $(".answer .rank").html(rank);
         $(".answer .points").html(points);
-        if (is_answer_good)
+        if (is_answer_good === "correct")
             $(".good-answer").show();
-        else
-            $(".wrong-answer").show()
+        else if (is_answer_good === "wrong")
+            $(".wrong-answer-show").show();
+        else if (is_answer_good === "noAnswer")
+            $(".no-answer").show();
     }
 };

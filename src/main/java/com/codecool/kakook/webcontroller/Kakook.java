@@ -1,5 +1,6 @@
 package com.codecool.kakook.webcontroller;
 
+import com.codecool.kakook.game.Game;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 import javax.servlet.ServletException;
@@ -16,9 +17,14 @@ public class Kakook extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html; charset=UTF-8");
 
-        TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(request.getServletContext());
-        WebContext context = new WebContext(request, response, request.getServletContext());
-        engine.process("index.html", context, response.getWriter());
+        if (Game.getInstance().isGameStarted())
+            response.getWriter().write("Game already started!");
+        else {
+            TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(request.getServletContext());
+            WebContext context = new WebContext(request, response, request.getServletContext());
+            engine.process("index.html", context, response.getWriter());
+        }
+
     }
 
 }

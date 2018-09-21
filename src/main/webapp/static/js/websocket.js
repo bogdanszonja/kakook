@@ -19,6 +19,8 @@ let webSocket = {
         let response = JSON.parse(evt.data);
         if (response.hasOwnProperty("action") && response["action"] === "setup_nickname" && response["success"] === true )
             narrative.setup_nickname_success(response["nickname"]);
+        else if (response.hasOwnProperty("action") && response["action"] === "setup_nickname" && response["success"] === false && response["reason"] === "game_already_started")
+            alert("Game started already!");
         else if (response.hasOwnProperty("action") && response["action"] === "send_answer" && response["success"] === true )
             narrative.on_answer_sent(response["answer"]);
         else if (response.hasOwnProperty("server_action") && response["server_action"] === "start_game")

@@ -20,8 +20,10 @@ let narrative = {
             $("#answer" + i).css("opacity", 1);
         }
         $(".question-wrapper").show();
+        $("#time").show();
     },
     on_answer: function (good_answer_number, answer_statistic) {
+        $("#time").hide();
         $("#next-question").show();
         for (let i = 1; i <= 4; i++){
             if (i !== good_answer_number)

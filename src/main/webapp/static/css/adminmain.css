@@ -112,7 +112,7 @@ body {
     padding-left: 30px;
 }
 
-.question-wrapper .answer-wrapper table .check{
+.question-wrapper .answer-wrapper table .answer-text-wrapper{
     width: 100%;
 }
 
@@ -136,4 +136,13 @@ body {
 
 #next-question {
     display: none;
+}
+
+#time {
+    display: none;
+    color: white;
+    font-size: 2.2em;
+    margin: 20px;
+    background-color: black;
+    padding: 10px;
 }

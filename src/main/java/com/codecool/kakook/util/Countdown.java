@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 
 public class Countdown {
 
-    public static Timer timer = new javax.swing.Timer(20000, new ActionListener() {
+    public static Timer timer = new javax.swing.Timer(15000, new ActionListener() {
 
         @Override
         public void actionPerformed(ActionEvent e) {

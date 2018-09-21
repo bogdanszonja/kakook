@@ -20,6 +20,8 @@ public class Game {
     private Question actualQuestion;
     private ZonedDateTime timeOfQuestion = null;
 
+    private boolean isGameStarted = false;
+
     private final int POINT_FOR_GOOD_ANSWER = 600;
 
     private Game() {}
@@ -28,7 +30,12 @@ public class Game {
         return instance;
     }
 
+    public boolean isGameStarted() {
+        return isGameStarted;
+    }
+
     public void startGame() {
+        isGameStarted = true;
         questionController.createQuestions();
         List<User> users = userController.getUsers();
         for(User user: users) {
@@ -51,6 +58,7 @@ public class Game {
     public void sendQuestion() {
         List<User> users = userController.getUsers();
         for(User user: users) {
+            user.setActualAnswerGood(ActualAnswer.noAnswer);
             user.sendQuestion();
         }
         adminController.getAdmin().sendQuestion(nextQuestion());
@@ -61,13 +69,13 @@ public class Game {
 
     public void increasePoints(String answerNumber, User user, ZonedDateTime timeOfAnswer) {
         if (answerNumber.equals("answer" + actualQuestion.getGoodAnswerNumber())) {
-            user.setActualAnswerGood(true);
+            user.setActualAnswerGood(ActualAnswer.correct);
             System.out.println("time of question: " + timeOfQuestion + ", time of answer: " + timeOfAnswer + " kivonva duration: " + Duration.between(timeOfQuestion, timeOfAnswer).getNano() / 1000000);
             Duration duration = Duration.between(timeOfQuestion, timeOfAnswer);
             int secondsPassed = duration.getNano() / 10000000;
             user.increasePoints(POINT_FOR_GOOD_ANSWER - secondsPassed);
         } else {
-            user.setActualAnswerGood(false);
+            user.setActualAnswerGood(ActualAnswer.wrong);
         }
     }
 

@@ -1,19 +1,21 @@
 package com.codecool.kakook.game;
 
 
+import com.codecool.kakook.webcontroller.WebSocketClient;
+
 public abstract class User {
 
     private String nickname;
 
     private int points = 0;
 
-    private boolean isActualAnswerGood;
+    private ActualAnswer isActualAnswerGood;
 
-    public boolean isActualAnswerGood() {
+    public ActualAnswer isActualAnswerGood() {
         return isActualAnswerGood;
     }
 
-    public void setActualAnswerGood(boolean actualAnswerGood) {
+    public void setActualAnswerGood(ActualAnswer actualAnswerGood) {
         isActualAnswerGood = actualAnswerGood;
     }
 
@@ -34,12 +36,12 @@ public abstract class User {
         this.points += points;
     }
 
-    public void addThisToUserController(){
-        UserController.getInstance().addUser(this);
+    public void addThisToUserController(WebSocketClient user){
+        UserController.getInstance().addUser(user);
     }
 
-    public void removeThisFromUserController(){
-        UserController.getInstance().removeUser(this);
+    public void removeThisFromUserController(WebSocketClient user){
+        UserController.getInstance().removeUser(user);
     }
 
     public abstract void startGame();

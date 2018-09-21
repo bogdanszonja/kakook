@@ -4,10 +4,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 
-import com.codecool.kakook.game.Game;
-import com.codecool.kakook.game.Question;
-import com.codecool.kakook.game.User;
-import com.codecool.kakook.game.UserController;
+import com.codecool.kakook.game.*;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -35,14 +32,13 @@ public class WebSocketClient extends User {
     @OnWebSocketConnect
     public void onConnect(Session session) throws IOException {
         this.session = session;
-        super.addThisToUserController();
         System.out.println(session.getRemoteAddress().getHostString() + " connected!");
     }
 
     @OnWebSocketClose
     public void onClose(Session session, int status, String reason) {
         this.session = session;
-        super.removeThisFromUserController();
+        super.removeThisFromUserController(this);
         System.out.println(session.getRemoteAddress().getHostString() + " closed!");
     }
 
@@ -57,12 +53,21 @@ public class WebSocketClient extends User {
     private String messageHandler(String message){
         JsonObject jsonObject = new JsonParser().parse(message).getAsJsonObject();
         if (jsonObject.has("action") && jsonObject.get("action").getAsString().equals("setup_nickname")){
-            super.setNickname(jsonObject.get("nickname").getAsString());
-            JsonObject response = new JsonObject();
-            response.addProperty("action", "setup_nickname");
-            response.addProperty("success", true);
-            response.addProperty("nickname", jsonObject.get("nickname").getAsString());
-            return response.toString();
+            if (Game.getInstance().isGameStarted()){
+                JsonObject response = new JsonObject();
+                response.addProperty("action", "setup_nickname");
+                response.addProperty("success", false);
+                response.addProperty("reason", "game_already_started");
+                return response.toString();
+            } else{
+                super.addThisToUserController(this);
+                super.setNickname(jsonObject.get("nickname").getAsString());
+                JsonObject response = new JsonObject();
+                response.addProperty("action", "setup_nickname");
+                response.addProperty("success", true);
+                response.addProperty("nickname", jsonObject.get("nickname").getAsString());
+                return response.toString();
+            }
         }
         else if (jsonObject.has("action") && jsonObject.get("action").getAsString().equals("send_answer")){
             JsonObject response = new JsonObject();
@@ -94,7 +99,7 @@ public class WebSocketClient extends User {
     public void answerShown() {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("server_action", "answer_shown");
-        jsonObject.addProperty("is_answer_good", super.isActualAnswerGood());
+        jsonObject.addProperty("is_answer_good", super.isActualAnswerGood().name());
         jsonObject.addProperty("points", super.getPoints());
         jsonObject.addProperty("rank", Game.getInstance().sendRank(this));
         sendMessage(jsonObject.toString());
